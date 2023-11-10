@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "tasks": [
+    {
+      "id": 1,
+      "content": "Create this app",
+      "importance": false
+    },
+    {
+      "id": 2,
+      "content": "Go play tennis",
+      "importance": false
+    },
+    {
+      "id": 3,
+      "content": "Go to grani on sunday",
+      "importance": true
+    },
+    {
+      "content": "Can I add one here?",
+      "importance": false,
+      "id": 4
+    },
+    {
+      "content": "Oahu ",
+      "importance": false,
+      "id": 5
+    }
+  ]
+}
