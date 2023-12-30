@@ -16,7 +16,7 @@ function App() {
 
     const newTask = {
       content: task, // The task content
-      importance: Math.random() < 0.5 // Randomize the importance
+      important: Math.random() < 0.5 // Randomize the importance
     };
 
     axios
@@ -26,17 +26,21 @@ function App() {
         setTask("")
         console.log(response)
       })
-
-
   }
   const toggleImportanceOf = id => {
     const url = `http://localhost:3001/tasks/${id}`
-    const task = taskList.find(t => t.id === id)
-    const changedTask = {...task, importance : !task.importance}
+    const task = taskList.find(t => t._id === id)
+    const changedTask = {...task, important : !task.important}
   
     axios
       .put(url,changedTask).then(response =>
-        setTaskList(taskList.map(t => t.id !== id ? t : response.data)))
+        setTaskList(taskList.map(t => t._id !== id ? t : response.data)))
+  }
+  const deleteTask = id => {
+    const url = `http://localhost:3001/tasks/${id}`
+    axios
+      .delete(url).then(response =>
+        setTaskList(taskList.filter(t => t._id !== id)))
   }
 
 
@@ -66,9 +70,10 @@ function App() {
       <ul>
         {taskList.map((task, index) => (
           <Task 
-          key ={task.id}
+          key ={task._id}
           task = {task}
-          toggleImportance={() => toggleImportanceOf(task.id)}
+          toggleImportance={() => toggleImportanceOf(task._id)}
+          deleteTask = {() => deleteTask(task._id)}
           />
         ))}
       </ul>
